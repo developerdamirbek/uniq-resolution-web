@@ -1,12 +1,6 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type PropsWithChildren,
-} from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/auth";
+import { createContext, useContext, useEffect, useState, type PropsWithChildren } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../store/auth';
 
 interface LoginData {
   access_token: string;
@@ -18,7 +12,7 @@ interface LoginData {
   phone_number: string | null;
   about: string | null;
 }
-  
+
 interface AuthContextType {
   isAuthenticated: boolean;
   login: (data: LoginData) => void;
@@ -26,7 +20,6 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const { isAuthenticated, login, logout, checkAuth } = useAuthStore();
@@ -36,9 +29,9 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     const verifyAuth = () => {
       try {
         checkAuth();
-      } catch (error) {
-        console.error(error);
-        navigate("/auth", { replace: true });
+      } catch {
+        // console.error(error);
+        navigate('/auth', { replace: true });
       }
       setInitialAuthCheckDone(true);
     };
@@ -56,15 +49,13 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     return null;
   }
 
-  return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };

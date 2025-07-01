@@ -1,6 +1,10 @@
+import { HeaderPage } from '../../widgets';
 
 export const Socials = () => {
   return (
-    <div>Socials</div>
-  )
-}
+    <div>
+      {' '}
+      <HeaderPage title="Socials" description="asdjasd" />
+    </div>
+  );
+};

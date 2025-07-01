@@ -1,51 +1,71 @@
-import { useState } from "react"
-import { Link, Outlet, useLocation } from "react-router-dom"
-import { Layout, Menu, Button, Typography } from "antd"
-import { ChartPie, FolderOpen, PanelLeftClose, PanelLeftOpen, Share2, Smile, UserRoundCog } from "lucide-react"
-import { useAuthStore } from "../store/auth"
+import { useEffect, useState } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Layout, Menu, Button, Typography } from 'antd';
+import {
+  ChartPie,
+  FolderOpen,
+  PanelLeftClose,
+  PanelLeftOpen,
+  Share2,
+  Smile,
+  UserRoundCog,
+} from 'lucide-react';
+import { useAuthStore } from '../store/auth';
 
-const { Header, Sider, Content } = Layout
-const { Title } = Typography
+const { Header, Sider, Content } = Layout;
+const { Title } = Typography;
+
+// const hedFix: React.FC = () => {
+//   const [isFixed, setIsFixed] = useState(false);
+
+//   useEffect(() => {
+//     const onScroll = () => {
+//       setIsFixed(window.scrollY > 100);
+//     };
+
+//     window.addEventListener('scroll', onScroll);
+//     return () => window.removeEventListener('scroll', onScroll);
+//   }, []);
+// };
 
 export const MainLayout = () => {
-  const [collapsed, setCollapsed] = useState(false)
-  const location = useLocation()
+  const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
 
-  const { logout } = useAuthStore()
+  const { logout } = useAuthStore();
 
   const handleLogout = () => {
-    logout()
-    window.location.href = "/auth"
-  }
+    logout();
+    window.location.href = '/auth';
+  };
 
-const menuItems = [
-  {
-    key: "/",
-    icon: <ChartPie />,
-    label: <Link to="/">Dashboard</Link>,
-  },
-  {
-    key: "/skills",
-    icon: <UserRoundCog />,
-    label: <Link to="/skills">Skills</Link>,
-  },
-  {
-    key: "/socials",
-    icon: <Share2 />,
-    label: <Link to="/socials">Socials</Link>,
-  },
-  {
-    key: "/projects",
-    icon: <FolderOpen />,
-    label: <Link to="/projects">Projects</Link>,
-  },
-  {
-    key: "/logo",
-    icon: <Smile />,
-    label: <Link to="/logo">Logo</Link>,
-  },
-];
-
+  const menuItems = [
+    {
+      key: '/',
+      icon: <ChartPie />,
+      label: <Link to="/">Dashboard</Link>,
+    },
+    {
+      key: '/skills',
+      icon: <UserRoundCog />,
+      label: <Link to="/skills">Skills</Link>,
+    },
+    {
+      key: '/socials',
+      icon: <Share2 />,
+      label: <Link to="/socials">Socials</Link>,
+    },
+    {
+      key: '/projects',
+      icon: <FolderOpen />,
+      label: <Link to="/projects">Projects</Link>,
+    },
+    {
+      key: '/logo',
+      icon: <Smile />,
+      label: <Link to="/logo">Logo</Link>,
+    },
+  ];
 
   return (
     <Layout className="min-h-screen font-poppins">
@@ -53,13 +73,12 @@ const menuItems = [
         trigger={null}
         collapsible
         collapsed={collapsed}
-        className="shadow-lg h-screen"
-
+        className="shadow-lg fixed z-10 h-screen w-[500px] "
       >
-        <div className="p-4 text-center">
+        <div className="p-4 text-center ">
           <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 mb-4">
             {collapsed ? (
-              <Title level={4} className="!text-white !mb-0">
+              <Title level={4} className="!text-white  !mb-0">
                 A
               </Title>
             ) : (
@@ -75,16 +94,17 @@ const menuItems = [
           mode="inline"
           selectedKeys={[location.pathname]}
           items={menuItems}
-          className="border-none bg-transparent !font-poppins"
+          className="border-none bg-transparent !font-poppins "
           style={{
-            background: "transparent",
+            background: 'transparent',
           }}
         />
 
-         {!collapsed && (
-          <div onClick={
-            handleLogout
-          } className="absolute cursor-pointer bottom-[70px] left-4 right-4">
+        {!collapsed && (
+          <div
+            onClick={handleLogout}
+            className="absolute cursor-pointer bottom-[70px] left-4 right-4"
+          >
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
               <div className="text-white/80 text-xs font-poppins">Logout</div>
             </div>
@@ -101,7 +121,10 @@ const menuItems = [
       </Sider>
 
       <Layout>
-        <Header className="shadow-sm !px-5 flex items-center justify-between">
+        <Header
+          className={` shadow-sm  w-full z-10 px-5 flex items-center justify-between transition-all duration-300 `}
+          // style={`${isFixd ? 'fixed top-0 left-0 bg-white' : 'relative'}`}
+        >
           <div className="flex items-center gap-4">
             <Button
               type="text"
@@ -110,9 +133,8 @@ const menuItems = [
             >
               {collapsed ? <PanelLeftOpen /> : <PanelLeftClose />}
             </Button>
-
+            <div></div>
           </div>
-
         </Header>
 
         <Content className="">
@@ -122,5 +144,5 @@ const menuItems = [
         </Content>
       </Layout>
     </Layout>
-  )
-}
+  );
+};
