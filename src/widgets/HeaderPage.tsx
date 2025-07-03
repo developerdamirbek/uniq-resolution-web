@@ -5,8 +5,9 @@ interface HeaderPageProps {
   title: string;
   description: string;
   onClick: () => void;
+  
 }
-const { Title } = Typography;
+// const { Title } = Typography;
 
 export const HeaderPage = ({ title, description, onClick }: HeaderPageProps) => {
   return (

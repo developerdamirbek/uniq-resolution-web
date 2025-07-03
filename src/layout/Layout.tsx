@@ -122,7 +122,7 @@ export const MainLayout = () => {
 
       <Layout>
         <Header
-          className={` shadow-sm  w-full z-10 px-5 flex items-center justify-between transition-all duration-300 `}
+          className={` shadow-sm  w-full fixed z-10 px-5 flex items-center justify-between transition-all duration-300 `}
           // style={`${isFixd ? 'fixed top-0 left-0 bg-white' : 'relative'}`}
         >
           <div className="flex items-center gap-4">
@@ -137,8 +137,8 @@ export const MainLayout = () => {
           </div>
         </Header>
 
-        <Content className="">
-          <div className="min-h-[calc(100vh-95px)] overflow-hidden p-4">
+        <Content className="overflow-y-auto h-[100vh]">
+          <div className="min-h-[calc(100vh-95px)] mt-[60px] overflow-hidden p-4 s">
             <Outlet />
           </div>
         </Content>
