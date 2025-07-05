@@ -4,8 +4,7 @@ import { Plus } from 'lucide-react';
 interface HeaderPageProps {
   title: string;
   description: string;
-  onClick: () => void;
-  
+  onClick?: () => void;
 }
 // const { Title } = Typography;
 
@@ -20,7 +19,7 @@ export const HeaderPage = ({ title, description, onClick }: HeaderPageProps) => 
       </div>
       <Button onClick={onClick} className="rounded-2xl  w-[140px] h-[150px] p-4  outline-none">
         <Plus className="mr-2 " />
-        Add Skills
+        Add
       </Button>
     </div>
   );

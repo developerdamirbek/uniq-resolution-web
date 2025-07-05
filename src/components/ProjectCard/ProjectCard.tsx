@@ -8,9 +8,19 @@ interface PropsProjectCard {
   cards: string;
   linkOne: string;
   linkTwo: string;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
-export const ProjectCard = ({ title, description, cards, linkOne, linkTwo }: PropsProjectCard) => {
+export const ProjectCard = ({
+  title,
+  description,
+  cards,
+  linkOne,
+  linkTwo,
+  onEdit,
+  onDelete,
+}: PropsProjectCard) => {
   return (
     <div className="w-[400px]">
       <Card className="flex flex-col ">
@@ -39,10 +49,10 @@ export const ProjectCard = ({ title, description, cards, linkOne, linkTwo }: Pro
           <Tag className="cursor-pointer">Tailwind</Tag>
         </div>
         <div className="flex gap-3 justify-end mt-4">
-          <Button>
+          <Button onClick={onEdit}>
             <Edit3 size={16} />
           </Button>
-          <Button>
+          <Button onClick={onDelete}>
             <Delete size={16} />
           </Button>
         </div>

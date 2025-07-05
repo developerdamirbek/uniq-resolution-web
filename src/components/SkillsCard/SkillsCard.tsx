@@ -5,7 +5,7 @@ interface Props {
   skill_id?: number;
   name: string;
   description?: string;
-  onEdit: (record) => void;
+  onEdit?: () => void;
   onDelete: () => void;
 }
 

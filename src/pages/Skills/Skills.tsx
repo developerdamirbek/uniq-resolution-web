@@ -8,21 +8,20 @@ import type { SkillType } from '../../types/skills';
 
 export const Skills = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [record, setRecord] = useState()
+  const [record, setRecord] = useState();
 
-  console.log(record)
+  console.log(record);
 
-    const { data, isLoading } = useGetSkills()
+  const { data, isLoading } = useGetSkills();
 
   const openBtn = () => {
     setIsOpen(true);
   };
 
-  const handleEdit = (record) => {
-    setRecord(record)
-    setIsOpen(true)
-  }
-
+  const handleEdit = (record: any) => {
+    setRecord(record);
+    setIsOpen(true);
+  };
 
   return (
     <div>
@@ -34,21 +33,18 @@ export const Skills = () => {
         isOpen={isOpen}
         record={record}
       />
+      <div>{isLoading && <HashLoader loading={isLoading} />}</div>
       <div>
-        {
-          isLoading && (
-            <HashLoader loading={isLoading} />
-          )
-        }
+        {data?.map((skill: SkillType) => (
+          <SkillsCard
+            key={skill.id}
+            name={skill.skill.name}
+            description={skill.skill.description}
+            onDelete={() => {}}
+            onEdit={() => handleEdit(skill)}
+          />
+        ))}
       </div>
-      <div>
-        {
-          data?.map((skill: SkillType) => (
-            <SkillsCard key={skill.id} name={skill.skill.name} description={skill.skill.description} onDelete={() => {}} onEdit={() => handleEdit(skill)} />
-          ))
-        }
-      </div>
-      
     </div>
   );
 };
