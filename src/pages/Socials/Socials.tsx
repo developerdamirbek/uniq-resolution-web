@@ -23,14 +23,12 @@ export const Socials = () => {
   };
 
 
-  //edit btn
   const handelEdit = (record: { id: number; link: string; name: string }) => {
     setOpen(false);
     setRecord(record);
   };
 
 
-  //delete btn 
   const hadelDelete = (id: number) => {
     deleteScial(id, {
       onSuccess: () => {

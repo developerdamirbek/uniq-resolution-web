@@ -37,7 +37,7 @@ export const Projects = () => {
     skills: [];
   }) => {
     setOpen(false);
-    setRecord(record?);
+    setRecord(record?)
   };
 
   //delete btn
