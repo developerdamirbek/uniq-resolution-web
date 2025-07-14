@@ -8,31 +8,28 @@ interface Props {
   record?: any | null;
 }
 export const AddModal = ({ isOpen, onClose, record }: Props) => {
+  const [form] = Form.useForm();
 
-  const [form] = Form.useForm()
+  const { mutate, isPending } = useCreateSkill();
 
-  const { mutate, isPending } = useCreateSkill()
-
-
-useEffect(() => {
+  useEffect(() => {
     if (record) {
       form.setFieldsValue({
         name: record.skill?.name || '',
-        description: record.skill?.description || ''
+        description: record.skill?.description || '',
       });
     } else {
       form.resetFields();
     }
   }, [record, form]);
 
-
   const handleSubmit = (values) => {
     mutate(values, {
       onSuccess: () => {
-        console.log("created")
-      }
-    })
-  }
+        console.log('created');
+      },
+    });
+  };
 
   return (
     <Modal footer={null} title={record ? 'Update ' : 'Create'} open={isOpen} onCancel={onClose}>

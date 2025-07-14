@@ -10,13 +10,7 @@ import { HashLoader } from 'react-spinners';
 
 export const Projects = () => {
   const [open, setOpen] = useState(false);
-  const [record, setRecord] = useState<{
-    id: number;
-    link: string;
-    name: string;
-    description: string;
-    skills: [];
-  } | null>(null); // <{ id: number; link: string; name: string }> ga type berish
+  const [record, setRecord] = useState<{ id: number; name: string; link: string; description: string; skills: [] } | null>(null); // <{ id: number; link: string; name: string }> ga type berish
   const { mutate: deleteScial } = useDeleteProjects();
 
   const handelOpen = () => {
@@ -31,13 +25,14 @@ export const Projects = () => {
   //edit btn
   const handelEdit = (record: {
     id: number;
+    name: string;
     link: string;
     title: string;
     description: string;
     skills: [];
   }) => {
     setOpen(false);
-    setRecord(record?)
+    setRecord(record)
   };
 
   //delete btn
@@ -68,6 +63,7 @@ export const Projects = () => {
             {data?.socials?.map(
               (projects: {
                 id: number;
+                name: string;
                 title: string;
                 link: string;
                 description: string;
@@ -77,9 +73,11 @@ export const Projects = () => {
                   key={projects.id}
                   title={projects.title}
                   linkOne={projects.link}
+                  linkTwo='fdgd'
                   description={projects.description}
                   onEdit={() => handelEdit(projects)}
                   onDelete={() => hadelDelete(projects.id)}
+                  cards='fdg'
                 />
               )
             )}
