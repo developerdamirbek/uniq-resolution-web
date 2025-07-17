@@ -4,6 +4,6 @@ import request from "../api/instance";
 export const useCreateCompany = () => {
     return useMutation({
         mutationKey: ["create-company"],
-        mutationFn: (data: { name: string; inn: string; status: string }) => request.post("/companies", data).then((res) => res.data),
+        mutationFn: (data: { name: string; inn: string; status: string, created_at: string }) => request.post("/companies", data).then((res) => res.data),
     });
 }

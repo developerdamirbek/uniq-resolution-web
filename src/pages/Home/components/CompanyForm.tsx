@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons';
 import type { Company } from '../../../types/types';
 import { Building2 } from 'lucide-react';
+import dayjs from 'dayjs';
 
 const { Option } = Select;
 
@@ -75,23 +76,29 @@ export const CompanyForm = ({
         }
       );
     } else {
-      createCompany(values, {
-        onSuccess: () => {
-          toast({
-            title: 'Success!',
-            text: 'Company created successfully.',
-            icon: 'success',
-          });
-          onSuccess();
-        },
-        onError: (error: any) => {
-          toast({
-            title: 'Error!',
-            text: error?.message || 'Failed to create company.',
-            icon: 'error',
-          });
-        },
-      });
+      createCompany(
+        { 
+          ...values, 
+          created_at: dayjs().toISOString() 
+        }, 
+        {
+          onSuccess: () => {
+            toast({
+              title: 'Success!',
+              text: 'Company created successfully.',
+              icon: 'success',
+            });
+            onSuccess();
+          },
+          onError: (error: any) => {
+            toast({
+              title: 'Error!',
+              text: error?.message || 'Failed to create company.',
+              icon: 'error',
+            });
+          },
+        }
+      );
     }
   };
 
