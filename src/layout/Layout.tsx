@@ -2,68 +2,24 @@ import { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Layout, Menu, Button, Typography } from 'antd';
 import {
-  ChartPie,
-  FolderOpen,
+  Building2Icon,
   PanelLeftClose,
   PanelLeftOpen,
-  Share2,
-  Smile,
-  UserRoundCog,
 } from 'lucide-react';
-import { useAuthStore } from '../store/auth';
 
 const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
 
-// const hedFix: React.FC = () => {
-//   const [isFixed, setIsFixed] = useState(false);
-
-//   useEffect(() => {
-//     const onScroll = () => {
-//       setIsFixed(window.scrollY > 100);
-//     };
-
-//     window.addEventListener('scroll', onScroll);
-//     return () => window.removeEventListener('scroll', onScroll);
-//   }, []);
-// };
-
 export const MainLayout = () => {
+
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
-
-  const { logout } = useAuthStore();
-
-  const handleLogout = () => {
-    logout();
-    window.location.href = '/auth';
-  };
 
   const menuItems = [
     {
       key: '/',
-      icon: <ChartPie />,
-      label: <Link to="/">Dashboard</Link>,
-    },
-    {
-      key: '/skills',
-      icon: <UserRoundCog />,
-      label: <Link to="/skills">Skills</Link>,
-    },
-    {
-      key: '/socials',
-      icon: <Share2 />,
-      label: <Link to="/socials">Socials</Link>,
-    },
-    {
-      key: '/projects',
-      icon: <FolderOpen />,
-      label: <Link to="/projects">Projects</Link>,
-    },
-    {
-      key: '/logo',
-      icon: <Smile />,
-      label: <Link to="/logo">Logo</Link>,
+      icon: <Building2Icon />,
+      label: <Link to="/">Companies</Link>,
     },
   ];
 
@@ -76,14 +32,14 @@ export const MainLayout = () => {
         className="shadow-lg fixed z-10 h-screen w-[500px] "
       >
         <div className="p-4 text-center ">
-          <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 mb-4">
+          <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 mb-4">
             {collapsed ? (
-              <Title level={4} className="!text-white  !mb-0">
-                A
+              <Title level={4} className="!text-white !mb-0">
+                UR
               </Title>
             ) : (
               <Title level={4} className="!text-white !mb-0">
-                Admin Panel
+                UNIQ RESOLUTION
               </Title>
             )}
           </div>
@@ -100,21 +56,11 @@ export const MainLayout = () => {
           }}
         />
 
-        {!collapsed && (
-          <div
-            onClick={handleLogout}
-            className="absolute cursor-pointer bottom-[70px] left-4 right-4"
-          >
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
-              <div className="text-white/80 text-xs font-poppins">Logout</div>
-            </div>
-          </div>
-        )}
 
         {!collapsed && (
           <div className="absolute bottom-4 left-4 right-4">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
-              <div className="text-white/80 text-xs font-poppins">Version 1.0.0</div>
+              <div className="text-white/80 text-xs font-poppins">By Damirbek</div>
             </div>
           </div>
         )}
@@ -123,7 +69,6 @@ export const MainLayout = () => {
       <Layout>
         <Header
           className={` shadow-sm  w-full fixed z-10 px-5 flex items-center justify-between transition-all duration-300 `}
-          // style={`${isFixd ? 'fixed top-0 left-0 bg-white' : 'relative'}`}
         >
           <div className="flex items-center gap-4">
             <Button
@@ -133,12 +78,11 @@ export const MainLayout = () => {
             >
               {collapsed ? <PanelLeftOpen /> : <PanelLeftClose />}
             </Button>
-            <div></div>
           </div>
         </Header>
 
         <Content className="overflow-y-auto h-[100vh]">
-          <div className="min-h-[calc(100vh-95px)] mt-[60px] overflow-hidden p-4 s">
+          <div className="min-h-[calc(100vh-150px)] mt-[65px] overflow-hidden p-4 s">
             <Outlet />
           </div>
         </Content>

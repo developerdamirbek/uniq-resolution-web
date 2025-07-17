@@ -1,41 +1,11 @@
-import { Home, Logo, Projects, Skills, Socials } from "./LazyComponents";
+import type { RoutesType } from "../types/types";
+import { Home } from "./LazyComponents";
 
-type RouteType = {
-    id: number;
-    path?: string;
-    name: string;
-    component: React.FC;
-}
-
-export const routes: RouteType[] = [
+export const routes: RoutesType[] = [
     {
         id: 1,
         name: 'Home',
         path: '/',
         component: Home,
     },
-    {
-        id: 2,
-        name: 'Skills',
-        path: '/skills',
-        component: Skills,
-    },
-    {
-        id: 3,
-        name: 'Socials',
-        path: '/socials',
-        component: Socials,
-    },
-    {
-        id: 4,
-        name: 'Projects',
-        path: '/projects',
-        component: Projects,
-    },
-     {
-        id: 5,
-        name: 'Logo',
-        path: '/logo',
-        component: Logo,
-    }
 ]

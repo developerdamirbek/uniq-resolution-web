@@ -1,1 +1,1 @@
-export { Home, Logo, Projects, Skills, Socials } from './LazyComponents';
+export { Home } from './LazyComponents';
